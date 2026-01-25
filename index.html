@@ -3,65 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikesh Patel | Portfolio</title>
+    <title>Nikesh Patel | ECE Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
-    <div class="logo">NP</div>
-    <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<nav id="navbar">
+    <div class="nav-container">
+        <div class="logo" onclick="showPage('home')">NP</div>
+        <button class="mobile-menu-btn">☰</button>
+        <ul>
+            <li><a href="#" onclick="scrollToSection('about')">About</a></li>
+            <li><a href="#" onclick="scrollToSection('skills')">Skills</a></li>
+            <li><a href="#" onclick="scrollToSection('projects')">Projects</a></li>
+            <li><a href="#" onclick="scrollToSection('contact')">Contact</a></li>
+        </ul>
+        <div class="page-selector">
+            <button class="page-btn active" onclick="showPage('home')">Home</button>
+            <button class="page-btn" onclick="showPage('experience')">Experience</button>
+            <button class="page-btn" onclick="showPage('leadership')">Leadership</button>
+        </div>
+    </div>
 </nav>
 
-<header id="about">
-    <h1>Nikesh Patel</h1>
-    <p>Electrical & Computer Engineering at Carnegie Mellon University</p>
-    <p class="bio">I am a developer and engineer focused on the intersection of hardware and software.</p>
-</header>
-
-<section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skills-grid">
-        <div>
-            <h3>Software</h3>
-            <p>Python, Java, JavaScript, R, HTML/CSS</p>
+<!-- Home Page -->
+<div id="home" class="page active">
+    <header id="about">
+        <div class="hero-content">
+            <h1>Nikesh Patel</h1>
+            <p class="subtitle">Electrical & Computer Engineering @ Carnegie Mellon University</p>
+            <p class="bio">Engineering innovative solutions at the intersection of hardware and software. Passionate about robotics, automation, and creating systems that make a real-world impact.</p>
+            <div class="cta-buttons">
+                <a href="#" onclick="scrollToSection('projects')" class="cta-btn cta-primary">View My Work</a>
+                <a href="#" onclick="scrollToSection('contact')" class="cta-btn cta-secondary">Get In Touch</a>
+            </div>
         </div>
-        <div>
-            <h3>Hardware</h3>
-            <p>Circuit Design, Soldering, Sensor Integration</p>
+    </header>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>💻 Programming</h3>
+                <p>Java, Python, HTML/CSS, JavaScript, R, TypeScript with experience in full-stack development and version control using GitHub.</p>
+            </div>
+            <div class="skill-card">
+                <h3>⚡ Engineering</h3>
+                <p>Robotics, Circuit Design, Wiring & Soldering, Encoder/Sensor Integration, PLC Programming, and Industrial Systems Integration.</p>
+            </div>
+            <div class="skill-card">
+                <h3>🌐 Web Development</h3>
+                <p>Front-end development with JavaScript, TypeScript, HTML/CSS. Back-end experience with Terraform and CI/CD pipeline workflows.</p>
+            </div>
+            <div class="skill-card">
+                <h3>🎯 Leadership & Management</h3>
+                <p>Team Management, Project Coordination, Technical Writing, and Microsoft Office Proficiency with proven leadership in competitive robotics.</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="projects">
-    <h2>Featured Work</h2>
+    <section id="projects">
+        <h2>Featured Work</h2>
 
-    <div class="project-card">
-        <h3>CMU 15-112 Term Project</h3>
-        <p>A technical programming project developed during my first semester at Carnegie Mellon, focusing on algorithmic complexity and interactive design.</p>
-
-        <div class="iframe-container">
-            <iframe width="410" height="460" src="https://academy.cs.cmu.edu/sharing/plumCamel562081/embed" frameborder="0"></iframe>
+        <div class="project-card">
+            <h3>CMU 15-112 Term Project</h3>
+            <p>An advanced technical programming project developed during my first semester at Carnegie Mellon University. This project demonstrates proficiency in algorithmic complexity, interactive design patterns, and object-oriented programming principles using Python.</p>
+            <div class="iframe-container">
+                <iframe width="750" height="460" src="https://academy.cs.cmu.edu/sharing/plumCamel562081/embed" frameborder="0"></iframe>
+            </div>
         </div>
-    </div>
 
-    <div class="project-card">
-        <h3>Novelis Engineering Intern</h3>
-        <p>Optimized inspection stations, improving measurement accuracy to 3 microns[cite: 20].</p>
-    </div>
-</section>
+        <div class="project-card">
+            <h3>Novelis Inspection Station Automation</h3>
+            <p>Engineered a comprehensive automation solution for mechanical testing inspection stations at Novelis, a global leader in aluminum manufacturing.</p>
+            <p><strong>Key Achievements:</strong></p>
+            <ul style="color: #555; line-height: 1.8; margin-left: 1.5rem;">
+                <li>Eliminated 200,000+ annual keystrokes of manual input, saving 21 hours annually</li>
+                <li>Improved aluminum tensile measurement accuracy to 3 microns (1/10 the width of a human hair)</li>
+                <li>Implemented seamless PLC and industrial inkjet printer system communication</li>
+                <li>Reduced processing time by 5 seconds per tensile sample through optimization</li>
+            </ul>
+        </div>
 
-<footer id="contact">
-    <h2>Let's Connect</h2>
-    <p>Email: nypatel@andrew.cmu.edu</p>
-    <div class="links">
-        <a href="https://www.linkedin.com/in/nikesh-patel1/">LinkedIn</a>
-    </div>
-</footer>
+        <div class="project-card">
+            <h3>FIRST Robotics Competition - Team 8849</h3>
+            <p>As team president, led design and development of competitive robots for FRC, specializing in electrical systems, mechanical design, and sensor integration.</p>
+            <p><strong>Competition Results:</strong></p>
+            <ul style="color: #555; line-height: 1.8; margin-left: 1.5rem;">
+                <li>2x Georgia State Championships qualifier</li>
+                <li>1x FIRST World Championships qualifier</li>
+                <li>Led team of 30+ students across design, build, electrical, programming, and strategy divisions</li>
+            </ul>
+        </div>
+
+        <div class="project-card">
+            <h3>Client-Based Software Engineering Projects</h3>
+            <p>Contributed to four distinct client projects during my internship at 7Factor Software, working in an apprentice-style program with professional CI/CD workflows.</p>
+            <p><strong>Technologies Used:</strong></p>
+            <ul style="color: #555; line-height: 1.8; margin-left: 1.5rem;">
+                <li>Front-end: JavaScript, TypeScript, HTML/CSS</li>
+                <li>Back-end: Terraform and cloud infrastructure</li>
+                <li>Applied full-stack development practices to real-world business applications</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Let's Connect</h2>
+        <p class="contact-info">📧 nypatel@andrew.cmu.edu</p>
+        <p class="contact-info">📱 678-707-3668</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/nikesh-patel1/" target="_blank">LinkedIn</a>
+            <a href="mailto:nypatel@andrew.cmu.edu">Email Me</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Experience Page -->
+<div id="experience" class="page">
+    <header id="experience-hero">
+        <div class="hero-content">
+            <h1>Professional Experience</h1>
+            <p class="subtitle">Building innovative solutions through internships and projects</p>
+        </div>
+    </header>
+
+    <section>
+        <h2>Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Engineering Intern - Novelis</h3>
+                    <p class="timeline-date">May 2024 - July 2024 | Kennesaw, GA</p>
+                    <p>Engineered and implemented a comprehensive solution for inspection stations used in extensive mechanical testing, optimizing performance and functionality.</p>
+                    <ul style="margin-top: 1rem; color: #555;">
+                        <li>Familiarized with PLC and industrial inkjet printer programs</li>
+                        <li>Conducted thorough troubleshooting to identify and resolve system issues</li>
+                        <li>Improved system performance and reliability through systematic optimization</li>
+                        <li>Achieved 3-micron accuracy in aluminum tensile measurements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Software Engineering Intern - 7Factor Software</h3>
+                    <p class="timeline-date">June 2023 - August 2023 | Atlanta, GA</p>
+                    <p>Worked in-depth on client-based software engineering projects through a summer apprentice-style internship program with CI/CD pipeline flow.</p>
+                    <ul style="margin-top: 1rem; color: #555;">
+                        <li>Problem-solved through several real-life scenarios on four different client projects</li>
+                        <li>Full-stack development with JavaScript, TypeScript, HTML/CSS (front-end)</li>
+                        <li>Back-end development using Terraform and cloud technologies</li>
+                        <li>Applied professional development practices in business applications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Carnegie Mellon University</h3>
+                <p class="timeline-date">Expected Graduation: May 2029</p>
+                <p><strong>Bachelor of Science in Electrical and Computer Engineering</strong></p>
+                <p style="margin-top: 1rem;"><strong>Relevant Courses:</strong></p>
+                <ul style="margin-top: 0.5rem; color: #555;">
+                    <li>15-112 Fundamentals of Programming and Computer Science</li>
+                    <li>18-100 Introduction to Electrical and Computer Engineering</li>
+                    <li>33-141 Physics I for Engineering</li>
+                    <li>15-113 Effective Coding with AI</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>Innovation Academy STEM Magnet High School</h3>
+                <p class="timeline-date">August 2021 - May 2025 | Alpharetta, GA</p>
+                <p><strong>Honors & Awards:</strong></p>
+                <ul style="margin-top: 0.5rem; color: #555;">
+                    <li>AP Capstone Diploma Recipient</li>
+                    <li>FIRST Dean's List Semi-Finalist Award</li>
+                    <li>2x AP Scholar with Distinction Award</li>
+                    <li>Dual Enrollment: Georgia Tech & Georgia State University</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact-experience">
+        <h2>Interested in Collaborating?</h2>
+        <p class="contact-info">I'm always open to discussing new projects and opportunities</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/nikesh-patel1/" target="_blank">Connect on LinkedIn</a>
+            <a href="mailto:nypatel@andrew.cmu.edu">Send an Email</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Leadership Page -->
+<div id="leadership" class="page">
+    <header id="leadership-hero">
+        <div class="hero-content">
+            <h1>Leadership & Activities</h1>
+            <p class="subtitle">Leading teams and driving community impact</p>
+        </div>
+    </header>
+
+    <section>
+        <h2>Leadership Roles</h2>
+
+        <div class="project-card">
+            <h3>President - Storm Robotics, FRC Team 8849</h3>
+            <p class="timeline-date">August 2021 - May 2025 | Alpharetta, GA</p>
+            <p>Led FIRST Robotics Competition Team 8849 to multiple championship qualifications, managing collaborative execution across all technical and business divisions.</p>
+
+            <p style="margin-top: 1.5rem;"><strong>Achievements:</strong></p>
+            <ul style="color: #555; line-height: 1.8; margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>2x State Championships qualifier</li>
+                <li>1x World Championships qualifier</li>
+                <li>Managed team of 30+ students across multiple departments</li>
+                <li>Previously served as Lead of Electrical Systems (2022-2023 Season)</li>
+            </ul>
+
+            <p style="margin-top: 1.5rem;"><strong>Responsibilities:</strong></p>
+            <ul style="color: #555; line-height: 1.8; margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Led design, build, electrical, programming, strategy, and business/outreach sub-teams</li>
+                <li>Specialized in design, electrical, and mechanical systems</li>
+                <li>Coordinated project timelines and resource allocation</li>
+                <li>Fostered collaboration between technical and non-technical teams</li>
+            </ul>
+        </div>
+
+        <div class="project-card">
+            <h3>President - 21st Century Leaders, Innovation Academy Chapter</h3>
+            <p class="timeline-date">August 2021 - May 2025 | Alpharetta, GA</p>
+            <p>Led the Innovation Academy chapter of 50+ students, organizing major community service initiatives and leadership development programs.</p>
+
+            <p style="margin-top: 1.5rem;"><strong>Impact:</strong></p>
+            <ul style="color: #555; line-height: 1.8; margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Organized ~4 major community service projects annually</li>
+                <li>Hosted 2 leadership forums each year</li>
+                <li>Led STEM workshops at local middle schools</li>
+                <li>Selected as one of 75 students across Georgia for the 2023 Summer Youth Leadership Institute at Emory University Goizueta Business School</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills Developed Through Leadership</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🎯 Team Management</h3>
+                <p>Led teams of 30+ members, coordinating cross-functional collaboration between technical and non-technical departments in high-pressure competitive environments.</p>
+            </div>
+            <div class="skill-card">
+                <h3>📋 Project Coordination</h3>
+                <p>Managed complex robotics projects from concept to competition, balancing tight deadlines with quality standards and resource constraints.</p>
+            </div>
+            <div class="skill-card">
+                <h3>🤝 Community Engagement</h3>
+                <p>Organized large-scale community service initiatives and STEM outreach programs, impacting hundreds of students across Georgia.</p>
+            </div>
+            <div class="skill-card">
+                <h3>📢 Communication</h3>
+                <p>Developed strong technical writing and presentation skills through competition documentation, grant proposals, and community presentations.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact-leadership">
+        <h2>Let's Build Something Together</h2>
+        <p class="contact-info">Interested in collaboration or mentorship opportunities?</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/nikesh-patel1/" target="_blank">LinkedIn</a>
+            <a href="mailto:nypatel@andrew.cmu.edu">Email</a>
+        </div>
+    </footer>
+</div>
 
 <script src="script.js"></script>
 </body>

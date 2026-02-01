@@ -348,6 +348,26 @@ iframe {
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
+/* GitHub Button */
+.github-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--dark);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--dark);
+}
+
+.github-btn:hover {
+    background: transparent;
+    color: var(--dark);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
 /* Contact Section */
 footer {
     background: linear-gradient(135deg, var(--dark) 0%, var(--gray) 100%);

@@ -414,6 +414,13 @@ footer h2::after {
     box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
 }
 
+.ai-citation {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    color: white;
+}
+
 /* Experience Page */
 .timeline {
     position: relative;

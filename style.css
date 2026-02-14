@@ -368,6 +368,22 @@ iframe {
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
+/* Chatbot Container */
+.chatbot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    background: #f5f5f5;
+    border-radius: 20px;
+    margin: 1rem 0;
+}
+
+.chatbot-container iframe {
+    display: block;
+    margin: 0 auto;
+}
+
 /* Contact Section */
 footer {
     background: linear-gradient(135deg, var(--dark) 0%, var(--gray) 100%);

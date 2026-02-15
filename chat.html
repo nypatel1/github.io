@@ -198,14 +198,14 @@
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <h1>Chat with AI Me</h1>
-            <p>Ask me anything!</p>
+            <h1>Chat with AI Nikesh</h1>
+            <p>Ask me anything about my experience and projects!</p>
         </div>
 
         <div class="chat-messages" id="chatMessages">
             <div class="message assistant">
                 <div class="message-content">
-                    Hi! I'm an AI version of Nikesh. Feel free to ask me anything about my work, experience, or interests. How can I help you today?
+                    Hi! I'm an AI version of Nikesh Patel. Feel free to ask me anything about my work at Carnegie Mellon, my robotics experience with FRC Team 8849, my internships at Novelis and 7Factor Software, or any of my projects. How can I help you today?
                 </div>
             </div>
         </div>
@@ -225,7 +225,7 @@
     </div>
 
     <script>
-        // IMPORTANT: Replace this with your actual Render.com backend URL
+        // Backend API URL
         const API_URL = 'https://one5113-hw4-backend-frontend-chatbot-api.onrender.com';
         
         const chatMessages = document.getElementById('chatMessages');
@@ -280,6 +280,7 @@
             errorDiv.className = 'error-message';
             errorDiv.textContent = message;
             chatMessages.appendChild(errorDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
             
             setTimeout(() => errorDiv.remove(), 5000);
         }
@@ -292,7 +293,9 @@
             try {
                 showTypingIndicator();
 
-                const response = await fetch(API_URL, {
+                console.log('Sending request to:', `${API_URL}/chat`);
+
+                const response = await fetch(`${API_URL}/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -303,13 +306,18 @@
                     })
                 });
 
+                console.log('Response status:', response.status);
+
                 hideTypingIndicator();
 
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    const errorText = await response.text();
+                    console.error('Error response:', errorText);
+                    throw new Error(`Server error: ${response.status}`);
                 }
 
                 const data = await response.json();
+                console.log('Response data:', data);
 
                 if (data.success) {
                     addMessage(data.message, 'assistant');
@@ -320,7 +328,7 @@
                         { role: 'assistant', content: data.message }
                     );
                     
-                    // Keep only last 10 messages to avoid token limits
+                    // Keep only last 10 exchanges (20 messages) to avoid token limits
                     if (conversationHistory.length > 20) {
                         conversationHistory = conversationHistory.slice(-20);
                     }

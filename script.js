@@ -1,60 +1,153 @@
-// Page Navigation
+// ===== Page Navigation =====
 function showPage(pageName) {
     const pages = document.querySelectorAll('.page');
-    const buttons = document.querySelectorAll('.page-btn');
+    const allPageBtns = document.querySelectorAll('.page-btn');
 
-    pages.forEach(page => {
-        page.classList.remove('active');
+    pages.forEach(page => page.classList.remove('active'));
+    allPageBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.page === pageName);
     });
 
-    buttons.forEach(btn => {
-        btn.classList.remove('active');
-    });
-
-    document.getElementById(pageName).classList.add('active');
-    event.target.classList.add('active');
+    const target = document.getElementById(pageName);
+    if (target) {
+        target.classList.add('active');
+    }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    initRevealAnimations();
 }
 
-// Smooth Scroll
+// ===== Smooth Scroll to Section =====
 function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
-    if (element) {
-        const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
+    if (!element) return;
 
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    }
+    const navHeight = document.getElementById('navbar').offsetHeight;
+    const top = element.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+
+    window.scrollTo({ top, behavior: 'smooth' });
 }
 
-// Navbar Scroll Effect
-window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+// ===== Mobile Menu =====
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
 
-// Intersection Observer for Animations
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = "translateY(0)";
+function closeMobileMenu() {
+    mobileMenuBtn.classList.remove('active');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    mobileNav.classList.remove('open');
+}
+
+if (mobileMenuBtn && mobileNav) {
+    mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        mobileMenuBtn.classList.toggle('active');
+        mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            closeMobileMenu();
         }
     });
-}, { threshold: 0.1 });
+}
 
-document.querySelectorAll('section, .project-card, .skill-card, .timeline-item').forEach((el) => {
-    el.style.opacity = 0;
-    el.style.transition = "all 0.8s ease-out";
-    el.style.transform = "translateY(30px)";
-    observer.observe(el);
+// ===== Navbar Scroll Effect =====
+const navbar = document.getElementById('navbar');
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    if (navbar) {
+        navbar.classList.toggle('scrolled', scrollY > 50);
+    }
+
+    if (scrollTopBtn) {
+        scrollTopBtn.classList.toggle('visible', scrollY > 400);
+    }
+}, { passive: true });
+
+// ===== Scroll to Top =====
+if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// ===== Dark Mode Toggle =====
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
+
+function setTheme(isDark) {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    if (themeIcon) {
+        themeIcon.innerHTML = isDark ? '&#9788;' : '&#9790;';
+    }
+    try {
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    } catch (e) { /* ignore */ }
+}
+
+(function initTheme() {
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('theme'); } catch (e) { /* ignore */ }
+
+    if (savedTheme === 'dark') {
+        setTheme(true);
+    } else if (savedTheme === 'light') {
+        setTheme(false);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme(true);
+    }
+})();
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        setTheme(!isDark);
+    });
+}
+
+// ===== Intersection Observer for Reveal Animations =====
+function initRevealAnimations() {
+    const revealElements = document.querySelectorAll(
+        '.page.active section, .page.active .project-card, .page.active .skill-card, .page.active .timeline-item'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = entry.target.dataset.delay || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, Number(delay));
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => {
+        if (!el.classList.contains('reveal')) {
+            el.classList.add('reveal');
+        }
+        el.classList.remove('visible');
+        observer.observe(el);
+    });
+}
+
+// ===== Keyboard Accessibility for Logo =====
+const logo = document.querySelector('.logo');
+if (logo) {
+    logo.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            showPage('home');
+        }
+    });
+}
+
+// ===== Initialize on Load =====
+document.addEventListener('DOMContentLoaded', () => {
+    initRevealAnimations();
 });

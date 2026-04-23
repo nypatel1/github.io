@@ -190,6 +190,40 @@
 
         <div class="project-card">
             <div class="project-header">
+                <h3>AI Posture Coach</h3>
+                <span class="project-badge">Final Project</span>
+            </div>
+            <p>A browser-based posture coach that watches you through your webcam, scores your posture in real time, and tracks how you do over time. Each frame is fed through MediaPipe's Pose Landmarker to produce 33 body landmarks. A custom analysis engine turns those landmarks into six interpretable metrics&mdash;forward-head angle, head pitch, shoulder level, shoulder hunch, spine lean, and left/right symmetry&mdash;maps each to a 0&ndash;100 sub-score via a Gaussian-like penalty curve, and combines them with tunable weights into one posture score and a short list of actionable tips.</p>
+            <div class="project-features">
+                <p class="features-heading">Key Features:</p>
+                <ul>
+                    <li>Real-time webcam pose estimation using MediaPipe Pose Landmarker (33 body landmarks)</li>
+                    <li>Six interpretable posture metrics: forward-head angle, head pitch, shoulder level, shoulder hunch, spine lean, and left/right symmetry</li>
+                    <li>Gaussian-like penalty curve mapping each metric to a 0&ndash;100 sub-score with tunable weights</li>
+                    <li>Actionable feedback tips generated from live analysis ("head is pushed forward", "chin is tucked down", etc.)</li>
+                    <li>History tracking with per-second samples persisted to local storage</li>
+                    <li>Line and bar chart visualizations on a dedicated History tab with CSV export</li>
+                </ul>
+            </div>
+            <div class="project-tech">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">MediaPipe</span>
+                <span class="tech-tag">WebRTC</span>
+                <span class="tech-tag">Chart.js</span>
+                <span class="tech-tag">Local Storage</span>
+            </div>
+            <div class="project-links">
+                <a href="https://nypatel1.github.io/15113-final-project/" target="_blank" rel="noopener noreferrer" class="project-btn btn-demo">
+                    &#127760; Live Demo
+                </a>
+                <a href="https://github.com/nypatel1/15113-final-project" target="_blank" rel="noopener noreferrer" class="project-btn btn-github">
+                    &#11088; View on GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
                 <h3>The Agentic Build &mdash; Python Quiz App</h3>
                 <span class="project-badge">HW8</span>
             </div>
